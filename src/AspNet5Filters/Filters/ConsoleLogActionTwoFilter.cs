@@ -9,30 +9,30 @@
 
         public ConsoleLogActionTwoFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("TestController");
+            _logger = loggerFactory.CreateLogger("ConsoleLogActionTwoFilter");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("__ConsoleLogActionTwoFilter OnActionExecuting");
+            _logger.LogInformation("OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogInformation("__ConsoleLogActionTwoFilter OnActionExecuted");
+            _logger.LogInformation("OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogDebug("__ConsoleLogActionTwoFilter OnResultExecuting");
+            _logger.LogDebug("OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogDebug("__ConsoleLogActionTwoFilter OnResultExecuted");
+            _logger.LogDebug("OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

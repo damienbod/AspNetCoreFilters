@@ -9,30 +9,30 @@
 
         public ClassConsoleLogActionBaseFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("TestController");
+            _logger = loggerFactory.CreateLogger("ClassConsoleLogActionBaseFilter");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogWarning("ClassConsoleLogActionBaseFilter OnActionExecuting");
+            _logger.LogWarning("ClassFilter OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogWarning("ClassConsoleLogActionBaseFilter OnActionExecuted");
+            _logger.LogWarning("ClassFilter OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogDebug("ClassConsoleLogActionBaseFilter OnResultExecuting");
+            _logger.LogDebug("ClassFilter OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogDebug("ClassConsoleLogActionBaseFilter OnResultExecuted");
+            _logger.LogDebug("ClassFilter OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

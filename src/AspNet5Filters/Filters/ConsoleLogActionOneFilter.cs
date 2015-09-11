@@ -14,30 +14,30 @@ namespace AspNet5.Filters
 
         public ConsoleLogActionOneFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("TestController");
+            _logger = loggerFactory.CreateLogger("ConsoleLogActionOneFilter");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("_ConsoleLogActionOneFilter OnActionExecuting");
+            _logger.LogInformation("OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogInformation("_ConsoleLogActionOneFilter OnActionExecuted");
+            _logger.LogInformation("OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogDebug("_ConsoleLogActionOneFilter OnResultExecuting");
+            _logger.LogDebug("OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogDebug("_ConsoleLogActionOneFilter OnResultExecuted");
+            _logger.LogDebug("OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }
