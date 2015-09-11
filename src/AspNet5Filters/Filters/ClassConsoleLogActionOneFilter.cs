@@ -3,36 +3,36 @@
     using Microsoft.AspNet.Mvc;
     using Microsoft.Framework.Logging;
 
-    public class ConsoleLogActionTwoFilter : ActionFilterAttribute
+    public class ClassConsoleLogActionOneFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
 
-        public ConsoleLogActionTwoFilter(ILoggerFactory loggerFactory)
+        public ClassConsoleLogActionOneFilter(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger("TestController");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("ConsoleLogActionTwoFilter OnActionExecuting");
+            _logger.LogInformation("ClassConsoleLogActionOneFilter OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogInformation("ConsoleLogActionTwoFilter OnActionExecuted");
+            _logger.LogInformation("ClassConsoleLogActionOneFilter OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogInformation("ConsoleLogActionTwoFilter OnResultExecuting");
+            _logger.LogInformation("ClassConsoleLogActionOneFilter OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogInformation("ConsoleLogActionTwoFilter OnResultExecuted");
+            _logger.LogInformation("ClassConsoleLogActionOneFilter OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

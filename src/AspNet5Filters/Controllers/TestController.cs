@@ -5,6 +5,7 @@ using Microsoft.Framework.Logging;
 
 namespace AspNet5.Controllers
 {
+    [ServiceFilter(typeof(ClassConsoleLogActionOneFilter))]
     [Route("api/[controller]")]
     public class TestController : Controller
     {
