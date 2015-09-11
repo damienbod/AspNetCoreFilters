@@ -8,6 +8,8 @@ using Microsoft.Framework.DependencyInjection;
 
 namespace WebApplication2
 {
+    using Microsoft.Framework.Logging;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -20,8 +22,12 @@ namespace WebApplication2
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+
             app.UseStaticFiles();
             app.UseMvc();
         }

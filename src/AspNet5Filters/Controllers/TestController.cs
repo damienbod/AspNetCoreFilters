@@ -6,39 +6,39 @@ using Microsoft.AspNet.Mvc;
 
 namespace WebApplication2.Controllers
 {
+    using Microsoft.Framework.Logging;
+
     [Route("api/[controller]")]
     public class TestController : Controller
     {
-        // GET: api/values
+        private readonly ILogger _logger;
+
+        public TestController(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.CreateLogger("TestController");
+        }
+
+        // GET: api/test
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            _logger.LogInformation("Executing Http Get all");
+            return new string[] { "test data one", "test data two" };
         }
 
-        // GET api/values/5
+        // GET api/test/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            _logger.LogInformation("Executing Http Get with id");
+            return "test data 1";
         }
 
-        // POST api/values
+        // POST api/test
         [HttpPost]
         public void Post([FromBody]string value)
         {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            _logger.LogInformation("Executing Http Post string value");
         }
     }
 }
