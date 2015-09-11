@@ -15,7 +15,16 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            var loggerFactory = new LoggerFactory { MinimumLevel = LogLevel.Debug };
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+
+            services.AddMvc(
+                config =>
+                    {
+                        config.Filters.Add(new GlobalFilter(loggerFactory));
+                    });
+
             services.AddScoped<ConsoleLogActionOneFilter>();
             services.AddScoped<ConsoleLogActionTwoFilter>();
             services.AddScoped<ClassConsoleLogActionBaseFilter>();
