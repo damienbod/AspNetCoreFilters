@@ -14,25 +14,25 @@
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("ClassConsoleLogActionOneFilter OnActionExecuting");
+            _logger.LogWarning("ClassConsoleLogActionOneFilter OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogInformation("ClassConsoleLogActionOneFilter OnActionExecuted");
+            _logger.LogWarning("ClassConsoleLogActionOneFilter OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogInformation("ClassConsoleLogActionOneFilter OnResultExecuting");
+            _logger.LogWarning("ClassConsoleLogActionOneFilter OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogInformation("ClassConsoleLogActionOneFilter OnResultExecuted");
+            _logger.LogWarning("ClassConsoleLogActionOneFilter OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }
