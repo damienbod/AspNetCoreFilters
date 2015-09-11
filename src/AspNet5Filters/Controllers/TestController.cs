@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
+using AspNet5.Filters;
+using Microsoft.Framework.Logging;
 
-namespace WebApplication2.Controllers
+namespace AspNet5.Controllers
 {
-    using Microsoft.Framework.Logging;
-
     [Route("api/[controller]")]
     public class TestController : Controller
     {
@@ -20,6 +17,8 @@ namespace WebApplication2.Controllers
 
         // GET: api/test
         [HttpGet]
+        [ServiceFilter(typeof(ConsoleLogActionOneFilter))]
+        [ServiceFilter(typeof(ConsoleLogActionTwoFilter))]
         public IEnumerable<string> Get()
         {
             _logger.LogInformation("Executing Http Get all");
