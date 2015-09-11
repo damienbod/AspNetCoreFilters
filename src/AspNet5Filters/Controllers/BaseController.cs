@@ -5,19 +5,20 @@ using Microsoft.Framework.Logging;
 
 namespace AspNet5.Controllers
 {
-    [ServiceFilter(typeof(ClassConsoleLogActionOneFilter))]
+    [ServiceFilter(typeof(ClassConsoleLogActionBaseFilter))]
     [Route("api/[controller]")]
-    public class TestController : Controller
+    public class BaseController : Controller
     {
         private readonly ILogger _logger;
 
-        public TestController(ILoggerFactory loggerFactory)
+        public BaseController(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("TestController");
+            _logger = loggerFactory.CreateLogger("BaseController");
         }
 
         // GET: api/test
         [HttpGet]
+        [HttpGet("getallbase")]
         [ServiceFilter(typeof(ConsoleLogActionOneFilter))]
         [ServiceFilter(typeof(ConsoleLogActionTwoFilter))]
         public IEnumerable<string> Get()
@@ -25,6 +26,5 @@ namespace AspNet5.Controllers
             _logger.LogInformation("Executing Http Get all");
             return new string[] { "test data one", "test data two" };
         }
-
     }
 }

@@ -18,8 +18,9 @@
             services.AddMvc();
             services.AddScoped<ConsoleLogActionOneFilter>();
             services.AddScoped<ConsoleLogActionTwoFilter>();
+            services.AddScoped<ClassConsoleLogActionBaseFilter>();
             services.AddScoped<ClassConsoleLogActionOneFilter>();
-            
+
         }
 
         // Configure is called after ConfigureServices is called.

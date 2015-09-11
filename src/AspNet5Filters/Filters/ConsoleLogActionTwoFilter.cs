@@ -26,13 +26,13 @@
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogInformation("__ConsoleLogActionTwoFilter OnResultExecuting");
+            _logger.LogDebug("__ConsoleLogActionTwoFilter OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogInformation("__ConsoleLogActionTwoFilter OnResultExecuted");
+            _logger.LogDebug("__ConsoleLogActionTwoFilter OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

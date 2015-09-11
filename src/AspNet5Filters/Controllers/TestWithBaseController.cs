@@ -7,24 +7,24 @@ namespace AspNet5.Controllers
 {
     [ServiceFilter(typeof(ClassConsoleLogActionOneFilter))]
     [Route("api/[controller]")]
-    public class TestController : Controller
+    public class TestWithBaseController : BaseController
     {
         private readonly ILogger _logger;
 
-        public TestController(ILoggerFactory loggerFactory)
+        public TestWithBaseController(ILoggerFactory loggerFactory): base(loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("TestController");
+            _logger = loggerFactory.CreateLogger("TestWithBaseController");
         }
 
         // GET: api/test
         [HttpGet]
+        [HttpGet("getall")]
         [ServiceFilter(typeof(ConsoleLogActionOneFilter))]
         [ServiceFilter(typeof(ConsoleLogActionTwoFilter))]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> GetAll()
         {
             _logger.LogInformation("Executing Http Get all");
             return new string[] { "test data one", "test data two" };
         }
-
     }
 }
