@@ -31,13 +31,13 @@ namespace AspNet5.Filters
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogDebug("OnResultExecuting");
+            _logger.LogInformation("OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogDebug("OnResultExecuted");
+            _logger.LogInformation("OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }
