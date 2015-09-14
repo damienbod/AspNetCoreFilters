@@ -26,13 +26,13 @@
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogDebug("ClassFilter OnResultExecuting");
+            _logger.LogWarning("ClassFilter OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogDebug("ClassFilter OnResultExecuted");
+            _logger.LogWarning("ClassFilter OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

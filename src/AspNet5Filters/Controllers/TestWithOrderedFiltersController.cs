@@ -22,7 +22,7 @@ namespace AspNet5.Controllers
         [ServiceFilter(typeof(ConsoleLogActionTwoFilter), Order = 2)]
         public IEnumerable<string> Get()
         {
-            _logger.LogInformation("TestWithOrderedFiltersController Http Get all");
+            _logger.LogInformation("Http Get all");
             return new string[] { "test data one", "test data two" };
         }
     }
