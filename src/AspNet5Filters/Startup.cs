@@ -1,12 +1,13 @@
-﻿namespace AspNet5
+﻿using AspNet5.Filters.ActionFilters;
+using AspNet5.Filters.ExceptionFilters;
+using AspNet5.Filters.ResourceFilters;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
+using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
+
+namespace AspNet5
 {
-    using AspNet5.Filters;
-
-    using Microsoft.AspNet.Builder;
-    using Microsoft.AspNet.Hosting;
-    using Microsoft.Framework.DependencyInjection;
-    using Microsoft.Framework.Logging;
-
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -23,6 +24,7 @@
                 config =>
                     {
                         config.Filters.Add(new GlobalFilter(loggerFactory));
+                        config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
                     });
 
             services.AddScoped<ConsoleLogActionOneFilter>();
@@ -30,6 +32,10 @@
             services.AddScoped<ClassConsoleLogActionBaseFilter>();
             services.AddScoped<ClassConsoleLogActionOneFilter>();
 
+            services.AddScoped<CustomOneLoggingExceptionFilter>();
+            services.AddScoped<CustomTwoLoggingExceptionFilter>();
+            services.AddScoped<CustomOneResourceFilter>();
+            
         }
 
         // Configure is called after ConfigureServices is called.

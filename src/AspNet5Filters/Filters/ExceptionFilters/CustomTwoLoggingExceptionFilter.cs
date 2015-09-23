@@ -15,6 +15,16 @@ namespace AspNet5.Filters.ExceptionFilters
         public void OnException(ExceptionContext context)
         {
             _logger.LogInformation("OnActionExecuting");
+            handleCustomException(context);
+        }
+
+        private void handleCustomException(ExceptionContext context)
+        {
+            if (context.Exception.GetType() == typeof(CustomException))
+            {
+                _logger.LogInformation("Handling the custom exception here, will not pass  it on to further exception filters");
+                context.Exception = null;
+            }
         }
     }
 }

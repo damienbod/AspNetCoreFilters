@@ -1,8 +1,8 @@
-﻿namespace AspNet5.Filters
-{
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.Framework.Logging;
+﻿using Microsoft.AspNet.Mvc;
+using Microsoft.Framework.Logging;
 
+namespace AspNet5.Filters.ActionFilters
+{
     public class GlobalFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;

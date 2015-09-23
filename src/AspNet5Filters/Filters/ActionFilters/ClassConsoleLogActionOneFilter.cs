@@ -1,4 +1,4 @@
-﻿namespace AspNet5.Filters
+﻿namespace AspNet5.Filters.ActionFilters
 {
     using Microsoft.AspNet.Mvc;
     using Microsoft.Framework.Logging;
