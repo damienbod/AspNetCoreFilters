@@ -3,7 +3,7 @@ using Microsoft.Framework.Logging;
 
 namespace AspNet5.Filters.ExceptionFilters
 {
-    public class CustomOneLoggingExceptionFilter : IExceptionFilter
+    public class CustomOneLoggingExceptionFilter : ExceptionFilterAttribute
     {
         private readonly ILogger _logger;
 
@@ -12,9 +12,16 @@ namespace AspNet5.Filters.ExceptionFilters
             _logger = loggerFactory.CreateLogger("CustomOneLoggingExceptionFilter");
         }
 
-        public void OnException(ExceptionContext context)
+        public override void OnException(ExceptionContext context)
         {
             _logger.LogInformation("OnActionExecuting");
+            base.OnException(context);
         }
+
+        //public override Task OnExceptionAsync(ExceptionContext context)
+        //{
+        //    _logger.LogInformation("OnActionExecuting async");
+        //    return base.OnExceptionAsync(context);
+        //}
     }
 }
