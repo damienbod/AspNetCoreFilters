@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AspNet5.Filters.ActionFilters;
 using AspNet5.Filters.ExceptionFilters;
 using AspNet5.Filters.ResourceFilters;
 using Microsoft.AspNet.Mvc;
@@ -21,7 +22,17 @@ namespace AspNet5.Controllers
         [HttpGet]
         [ServiceFilter(typeof(CustomOneLoggingExceptionFilter))]
         [ServiceFilter(typeof(CustomOneResourceFilter))]
+        [ServiceFilter(typeof(ConsoleLogActionTwoFilter))]
         public IEnumerable<string> Get()
+        {
+            _logger.LogInformation("Executing Http Get before exception");
+            throw new Exception("Yes a great exception");
+        }
+
+        [HttpGet("getwithorder")]
+        [ServiceFilter(typeof(CustomOneLoggingExceptionFilter), Order = 10)]
+        [ServiceFilter(typeof(CustomOneResourceFilter))]
+        public IEnumerable<string> GetWithOrderedFiltered()
         {
             _logger.LogInformation("Executing Http Get before exception");
             throw new Exception("Yes a great exception");

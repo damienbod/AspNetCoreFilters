@@ -34,8 +34,7 @@ namespace AspNet5
 
             services.AddScoped<CustomOneLoggingExceptionFilter>();
             services.AddScoped<CustomTwoLoggingExceptionFilter>();
-            services.AddScoped<CustomOneResourceFilter>();
-            
+            services.AddScoped<CustomOneResourceFilter>();   
         }
 
         // Configure is called after ConfigureServices is called.

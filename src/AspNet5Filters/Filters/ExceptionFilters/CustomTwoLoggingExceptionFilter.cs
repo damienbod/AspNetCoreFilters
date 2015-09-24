@@ -14,7 +14,7 @@ namespace AspNet5.Filters.ExceptionFilters
 
         public override void OnException(ExceptionContext context)
         {
-            _logger.LogInformation("OnActionExecuting");
+            _logger.LogInformation("OnException");
             handleCustomException(context);
             base.OnException(context);
         }
@@ -29,7 +29,7 @@ namespace AspNet5.Filters.ExceptionFilters
         {
             if (context.Exception.GetType() == typeof(CustomException))
             {
-                _logger.LogInformation("Handling the custom exception here, will not pass  it on to further exception filters");
+                _logger.LogInformation("Handling the custom exception here, will not pass it on to further exception filters");
                 context.Exception = null;
             }
         }
