@@ -30,7 +30,7 @@ namespace AspNet5.Controllers
         }
 
         [HttpGet("getwithorder")]
-        [ServiceFilter(typeof(CustomOneLoggingExceptionFilter), Order = 10)]
+        [ServiceFilter(typeof(CustomOneLoggingExceptionFilter), Order = -1)]
         [ServiceFilter(typeof(CustomOneResourceFilter))]
         public IEnumerable<string> GetWithOrderedFiltered()
         {

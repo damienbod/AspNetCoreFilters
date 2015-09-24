@@ -14,7 +14,7 @@ namespace AspNet5.Filters.ExceptionFilters
 
         public override void OnException(ExceptionContext context)
         {
-            _logger.LogInformation("OnActionExecuting");
+            _logger.LogInformation("OnException");
             base.OnException(context);
         }
 
