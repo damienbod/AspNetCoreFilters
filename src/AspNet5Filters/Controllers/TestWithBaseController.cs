@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
-using AspNet5.Filters;
+using AspNet5.Filters.ActionFilters;
 using Microsoft.Framework.Logging;
 
 namespace AspNet5.Controllers

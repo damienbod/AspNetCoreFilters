@@ -1,38 +1,38 @@
-﻿namespace AspNet5.Filters
-{
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.Framework.Logging;
+﻿using Microsoft.AspNet.Mvc;
+using Microsoft.Framework.Logging;
 
-    public class ClassConsoleLogActionBaseFilter : ActionFilterAttribute
+namespace AspNet5.Filters.ActionFilters
+{
+    public class GlobalFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
 
-        public ClassConsoleLogActionBaseFilter(ILoggerFactory loggerFactory)
+        public GlobalFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("ClassConsoleLogActionBaseFilter");
+            _logger = loggerFactory.CreateLogger("GlobalFilter");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogWarning("ClassFilter OnActionExecuting");
+            _logger.LogInformation("OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogWarning("ClassFilter OnActionExecuted");
+            _logger.LogInformation("OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogWarning("ClassFilter OnResultExecuting");
+            _logger.LogInformation("OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogWarning("ClassFilter OnResultExecuted");
+            _logger.LogInformation("OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

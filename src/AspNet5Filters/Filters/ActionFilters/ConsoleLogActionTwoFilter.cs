@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.Mvc;
+using Microsoft.Framework.Logging;
 
-namespace AspNet5.Filters
+namespace AspNet5.Filters.ActionFilters
 {
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.Framework.Logging;
-
-    public class ConsoleLogActionOneFilter : ActionFilterAttribute
+    public class ConsoleLogActionTwoFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
 
-        public ConsoleLogActionOneFilter(ILoggerFactory loggerFactory)
+        public ConsoleLogActionTwoFilter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger("ConsoleLogActionOneFilter");
+            _logger = loggerFactory.CreateLogger("ConsoleLogActionTwoFilter");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
