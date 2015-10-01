@@ -15,12 +15,12 @@ namespace AspNet5.Filters.ResourceFilters
 
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
-            _logger.LogInformation("OnActionExecuted");
+            _logger.LogInformation("OnResourceExecuted");
         }
 
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
-            _logger.LogInformation("OnActionExecuting");
+            _logger.LogInformation("OnResourceExecuting");
         }
     }
 }
