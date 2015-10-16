@@ -1,6 +1,6 @@
 ﻿namespace AspNet5.Filters.ActionFilters
 {
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNet.Mvc.Filters;
     using Microsoft.Framework.Logging;
 
     public class ConsoleLogActionOneFilter : ActionFilterAttribute
