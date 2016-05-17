@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using AspNet5.Filters.ActionFilters;
 
 using Microsoft.Extensions.Logging;

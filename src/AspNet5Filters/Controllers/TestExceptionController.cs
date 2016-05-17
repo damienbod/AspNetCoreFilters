@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AspNet5.Filters.ActionFilters;
 using AspNet5.Filters.ExceptionFilters;
 using AspNet5.Filters.ResourceFilters;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace AspNet5.Controllers

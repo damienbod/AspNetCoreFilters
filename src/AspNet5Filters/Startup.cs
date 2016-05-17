@@ -1,27 +1,33 @@
-﻿using AspNet5.Filters.ActionFilters;
-using AspNet5.Filters.ExceptionFilters;
-using AspNet5.Filters.ResourceFilters;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using AspNet5.Filters.ActionFilters;
+using AspNet5.Filters.ExceptionFilters;
+using AspNet5.Filters.ResourceFilters;
+
 
 namespace AspNet5
 {
     public class Startup
     {
-         public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; set; }
-
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -48,13 +54,11 @@ namespace AspNet5
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+              loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
+			
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

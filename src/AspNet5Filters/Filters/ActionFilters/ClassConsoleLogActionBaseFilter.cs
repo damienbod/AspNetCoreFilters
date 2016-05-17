@@ -1,8 +1,8 @@
-﻿namespace AspNet5.Filters.ActionFilters
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
+	
+namespace AspNet5.Filters.ActionFilters
 {
-    using Microsoft.AspNet.Mvc.Filters;
-    using Microsoft.Extensions.Logging;
-
     public class ClassConsoleLogActionBaseFilter : ActionFilterAttribute
     {
         private readonly ILogger _logger;
