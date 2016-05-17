@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using AspNet5.Filters.ActionFilters;
 using AspNet5.Filters.ExceptionFilters;
 using AspNet5.Filters.ResourceFilters;
-
+using System.IO;
 
 namespace AspNet5
 {
@@ -31,7 +27,7 @@ namespace AspNet5
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var loggerFactory = new LoggerFactory { MinimumLevel = LogLevel.Debug };
+            var loggerFactory = new LoggerFactory();
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
@@ -58,7 +54,7 @@ namespace AspNet5
             loggerFactory.AddDebug();
 
             app.UseStaticFiles();
-			
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -66,8 +62,17 @@ namespace AspNet5
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-		
-		// Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
     }
 }
