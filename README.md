@@ -1,5 +1,7 @@
 # ASP.NET Core Filters
 
+2017.08.18 Updated to ASP.NET Core 2.0
+
 2017.01.05 Updated to VS2017 and ASP.NET Core 1.1
 
 https://damienbod.com/2015/09/15/asp-net-5-action-filters/
