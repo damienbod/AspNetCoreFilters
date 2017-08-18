@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using AspNetCoreFilters.Filters.ActionFilters;
 using AspNetCoreFilters.Filters.ExceptionFilters;
 using AspNetCoreFilters.Filters.ResourceFilters;
-using System.IO;
 
 namespace AspNetCoreFilters
 {
