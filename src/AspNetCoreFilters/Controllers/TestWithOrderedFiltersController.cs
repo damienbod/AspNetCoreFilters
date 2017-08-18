@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using AspNet5.Filters.ActionFilters;
+using AspNetCoreFilters.Filters.ActionFilters;
 using Microsoft.Extensions.Logging;
 
-namespace AspNet5.Controllers
+namespace AspNetCoreFilters.Controllers
 {
     [ServiceFilter(typeof(ClassConsoleLogActionOneFilter), Order=3)]
     [Route("api/[controller]")]

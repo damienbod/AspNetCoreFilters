@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
     
-namespace AspNet5.Filters.ActionFilters
+namespace AspNetCoreFilters.Filters.ActionFilters
 {
     public class ClassConsoleLogActionBaseFilter : ActionFilterAttribute
     {

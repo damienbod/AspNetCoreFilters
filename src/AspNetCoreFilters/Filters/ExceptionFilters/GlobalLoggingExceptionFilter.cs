@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 
-namespace AspNet5.Filters.ExceptionFilters
+namespace AspNetCoreFilters.Filters.ExceptionFilters
 {
     public class GlobalLoggingExceptionFilter : IExceptionFilter
     {
