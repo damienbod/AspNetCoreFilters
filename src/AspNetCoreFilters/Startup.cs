@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using AspNetCoreFilters.Filters.ActionFilters;
 using AspNetCoreFilters.Filters.ExceptionFilters;
 using AspNetCoreFilters.Filters.ResourceFilters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFilters
 {
@@ -27,15 +28,12 @@ namespace AspNetCoreFilters
         public void ConfigureServices(IServiceCollection services)
         {
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
 
-            services.AddMvc(
-                config =>
-                    {
-                        config.Filters.Add(new GlobalFilter(loggerFactory));
-                        config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
-                    });
+            services.AddMvc( config =>
+            {
+                config.Filters.Add(new GlobalFilter(loggerFactory));
+                config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<ConsoleLogActionOneFilter>();
             services.AddScoped<ConsoleLogActionTwoFilter>();
@@ -47,11 +45,8 @@ namespace AspNetCoreFilters
             services.AddScoped<CustomOneResourceFilter>();   
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             app.UseStaticFiles();
             
             app.UseMvc(routes =>
