@@ -1,39 +1,35 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using AspNetCoreFilters.Filters.ActionFilters;
 using AspNetCoreFilters.Filters.ExceptionFilters;
 using AspNetCoreFilters.Filters.ResourceFilters;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFilters
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var loggerFactory = new LoggerFactory();
-
-            services.AddMvc( config =>
-            {
-                config.Filters.Add(new GlobalFilter(loggerFactory));
-                config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<ConsoleLogActionOneFilter>();
             services.AddScoped<ConsoleLogActionTwoFilter>();
@@ -43,17 +39,29 @@ namespace AspNetCoreFilters
             services.AddScoped<CustomOneLoggingExceptionFilter>();
             services.AddScoped<CustomTwoLoggingExceptionFilter>();
             services.AddScoped<CustomOneResourceFilter>();   
+            services.AddControllers(config =>
+            {
+                config.Filters.Add(new GlobalFilter(loggerFactory));
+                config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseStaticFiles();
-            
-            app.UseMvc(routes =>
+            if (env.IsDevelopment())
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }
