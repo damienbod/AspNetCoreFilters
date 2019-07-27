@@ -10,7 +10,7 @@ namespace AspNetCoreFilters.Controllers
 {
     [Route("api/[controller]")]
     [ServiceFilter(typeof(CustomTwoLoggingExceptionFilter))]
-    public class TestExceptionController : Controller
+    public class TestExceptionController : ControllerBase
     {
         private readonly ILogger _logger;
 

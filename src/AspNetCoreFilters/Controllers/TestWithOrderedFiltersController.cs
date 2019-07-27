@@ -7,7 +7,7 @@ namespace AspNetCoreFilters.Controllers
 {
     [ServiceFilter(typeof(ClassConsoleLogActionOneFilter), Order=3)]
     [Route("api/[controller]")]
-    public class TestWithOrderedFiltersController : Controller
+    public class TestWithOrderedFiltersController : ControllerBase
     {
         private readonly ILogger _logger;
 

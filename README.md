@@ -1,5 +1,7 @@
 # ASP.NET Core Filters
 
+2019-07-27 Updated to ASP.NET Core 3.0
+
 2019-01-30 Updated to ASP.NET Core 2.2
 
 2017.08.18 Updated to ASP.NET Core 2.0
