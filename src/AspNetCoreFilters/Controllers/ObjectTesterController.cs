@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AspNetCoreFilters.Controllers
 {
     [Route("api/[controller]")]
-    public class ObjectTesterController : Controller
+    public class ObjectTesterController : ControllerBase
     {
         [HttpGet]
         [Route("tarray")]

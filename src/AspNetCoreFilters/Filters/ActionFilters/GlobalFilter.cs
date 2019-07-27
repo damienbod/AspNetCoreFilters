@@ -14,25 +14,25 @@ namespace AspNetCoreFilters.Filters.ActionFilters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            _logger.LogInformation("OnActionExecuting");
+            _logger.LogInformation("Global-OnActionExecuting");
             base.OnActionExecuting(context);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            _logger.LogInformation("OnActionExecuted");
+            _logger.LogInformation("Global-OnActionExecuted");
             base.OnActionExecuted(context);
         }
 
         public override void OnResultExecuting(ResultExecutingContext context)
         {
-            _logger.LogInformation("OnResultExecuting");
+            _logger.LogInformation("Global-OnResultExecuting");
             base.OnResultExecuting(context);
         }
 
         public override void OnResultExecuted(ResultExecutedContext context)
         {
-            _logger.LogInformation("OnResultExecuted");
+            _logger.LogInformation("Global-OnResultExecuted");
             base.OnResultExecuted(context);
         }
     }

@@ -1,40 +1,27 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 using AspNetCoreFilters.Filters.ActionFilters;
 using AspNetCoreFilters.Filters.ExceptionFilters;
 using AspNetCoreFilters.Filters.ResourceFilters;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFilters
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var loggerFactory = new LoggerFactory();
-
-            services.AddMvc( config =>
-            {
-                config.Filters.Add(new GlobalFilter(loggerFactory));
-                config.Filters.Add(new GlobalLoggingExceptionFilter(loggerFactory));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddScoped<ConsoleLogActionOneFilter>();
             services.AddScoped<ConsoleLogActionTwoFilter>();
             services.AddScoped<ClassConsoleLogActionBaseFilter>();
@@ -42,18 +29,34 @@ namespace AspNetCoreFilters
 
             services.AddScoped<CustomOneLoggingExceptionFilter>();
             services.AddScoped<CustomTwoLoggingExceptionFilter>();
+
+            services.AddScoped<GlobalFilter>();
+            services.AddScoped<GlobalLoggingExceptionFilter>();
+
             services.AddScoped<CustomOneResourceFilter>();   
+            services.AddControllers(config =>
+            {
+                config.Filters.Add<GlobalFilter>();
+                config.Filters.Add<GlobalLoggingExceptionFilter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseStaticFiles();
-            
-            app.UseMvc(routes =>
+            if (env.IsDevelopment())
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }

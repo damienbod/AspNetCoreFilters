@@ -8,7 +8,7 @@ namespace AspNetCoreFilters.Controllers
 {
     [ServiceFilter(typeof(ClassConsoleLogActionBaseFilter))]
     [Route("api/[controller]")]
-    public class BaseController : Controller
+    public class BaseController : ControllerBase
     {
         private readonly ILogger _logger;
 
