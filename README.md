@@ -6,6 +6,8 @@ https://damienbod.com/2015/09/30/asp-net-5-exception-filters-and-resource-filter
 
 ## History 
 
+2020-12-06 Updated to ASP.NET Core 5
+
 2019-07-27 Updated to ASP.NET Core 3.0
 
 2019-01-30 Updated to ASP.NET Core 2.2

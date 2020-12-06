@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,12 +32,12 @@ namespace AspNetCoreFilters
             services.AddScoped<GlobalFilter>();
             services.AddScoped<GlobalLoggingExceptionFilter>();
 
-            services.AddScoped<CustomOneResourceFilter>();   
+            services.AddScoped<CustomOneResourceFilter>();
             services.AddControllers(config =>
             {
                 config.Filters.Add<GlobalFilter>();
                 config.Filters.Add<GlobalLoggingExceptionFilter>();
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
